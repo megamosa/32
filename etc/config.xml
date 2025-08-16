@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magoarab_whatsapp>
+            <general>
+                <enabled>1</enabled>
+                <phone_number>+1234567890</phone_number>
+                <default_message>Hello! How can we help you today?</default_message>
+            </general>
+            <appearance>
+                <icon_style>style_1</icon_style>
+                <icon_position>bottom-right</icon_position>
+                <icon_size>medium</icon_size>
+                <animation_effect>pulse</animation_effect>
+            </appearance>
+            <multi_agent>
+                <multi_agent_enabled>1</multi_agent_enabled>
+            </multi_agent>
+            <display>
+                <show_on_pages>all_pages</show_on_pages>
+            </display>
+            <advanced>
+                <enable_scheduling>0</enable_scheduling>
+                <working_hours_start>09:00</working_hours_start>
+                <working_hours_end>18:00</working_hours_end>
+                <working_days>1,2,3,4,5</working_days>
+            </advanced>
+        </magoarab_whatsapp>
+    </default>
+</config>

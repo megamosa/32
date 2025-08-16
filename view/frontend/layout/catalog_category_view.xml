@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagoArab WhatsApp Icon Extension
+ * Catalog Category View Layout
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="MagoArab\WhatsappIcon\Block\WhatsappIcon" 
+                   name="magoarab.whatsapp.icon" 
+                   template="MagoArab_WhatsappIcon::whatsapp_icon.phtml" 
+                   cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

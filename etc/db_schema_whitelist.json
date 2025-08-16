@@ -1,0 +1,28 @@
+{
+    "magoarab_whatsapp_agents": {
+        "column": {
+            "agent_id": true,
+            "name": true,
+            "phone": true,
+            "title": true,
+            "avatar_url": true,
+            "status": true,
+            "working_hours": true,
+            "working_days": true,
+            "timezone": true,
+            "welcome_message": true,
+            "sort_order": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "MAGOARAB_WHATSAPP_AGENTS_NAME": true,
+            "MAGOARAB_WHATSAPP_AGENTS_STATUS": true,
+            "MAGOARAB_WHATSAPP_AGENTS_IS_ACTIVE": true
+        }
+    }
+}

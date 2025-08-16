@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagoArab WhatsApp Icon Extension
+ * Admin Routes Configuration
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="magoarab_whatsapp" frontName="magoarab_whatsapp">
+            <module name="MagoArab_WhatsappIcon" before="Magento_Backend" />
+        </route>
+    </router>
+</config>

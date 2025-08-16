@@ -1,0 +1,206 @@
+<?php
+/**
+ * @var \MagoArab\WhatsappIcon\Block\Adminhtml\System\Config\AgentsManagement $block
+ */
+?>
+<div class="agents-management-wrapper">
+    <div class="agents-management-header">
+        <h3><?= __('WhatsApp Agents Management') ?></h3>
+        <p class="note"><?= __('Manage your WhatsApp agents for multi-agent support.') ?></p>
+    </div>
+    
+    <div class="agents-management-stats">
+        <div class="stat-item">
+            <span class="stat-number"><?= $block->getAgentsCount() ?></span>
+            <span class="stat-label"><?= __('Total Agents') ?></span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-status <?= $block->isMultiAgentEnabled() ? 'enabled' : 'disabled' ?>">
+                <?= $block->isMultiAgentEnabled() ? __('Enabled') : __('Disabled') ?>
+            </span>
+            <span class="stat-label"><?= __('Multi-Agent Status') ?></span>
+        </div>
+    </div>
+    
+    <?php if ($block->getAgentsCount() > 0): ?>
+    <div class="agents-management-recent">
+        <h4><?= __('Recent Agents') ?></h4>
+        <div class="agents-list">
+            <?php foreach ($block->getRecentAgents() as $agent): ?>
+            <div class="agent-item">
+                <div class="agent-info">
+                    <span class="agent-name"><?= $block->escapeHtml($agent['name']) ?></span>
+                    <span class="agent-phone"><?= $block->escapeHtml($agent['phone']) ?></span>
+                </div>
+                <div class="agent-status">
+                    <span class="status-badge status-<?= $agent['status'] ?> <?= $agent['is_active'] ? 'active' : 'inactive' ?>">
+                        <?= __(ucfirst($agent['status'])) ?>
+                    </span>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    
+    <div class="agents-management-actions">
+        <button type="button" class="action-primary" onclick="window.open('<?= $block->getAgentsManagementUrl() ?>', '_blank')">
+            <span><?= __('Manage Agents') ?></span>
+        </button>
+        <p class="note"><?= __('Click to open the agents management page in a new tab.') ?></p>
+    </div>
+</div>
+
+<style>
+.agents-management-wrapper {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.agents-management-header h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.agents-management-header .note {
+    margin: 0 0 15px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+.agents-management-stats {
+    display: flex;
+    gap: 30px;
+    margin: 15px 0;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #007cba;
+}
+
+.stat-status {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+.stat-status.enabled {
+    background: #d4edda;
+    color: #155724;
+}
+
+.stat-status.disabled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.stat-label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.agents-management-recent {
+    margin: 15px 0;
+}
+
+.agents-management-recent h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.agents-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.agent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    background: #fafafa;
+}
+
+.agent-info .agent-name {
+    display: block;
+    font-weight: bold;
+    color: #333;
+}
+
+.agent-info .agent-phone {
+    display: block;
+    font-size: 12px;
+    color: #666;
+}
+
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-badge.status-online.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-offline.active,
+.status-badge.inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge.status-busy.active {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.agents-management-actions {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.agents-management-actions .action-primary {
+    background: #007cba;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.agents-management-actions .action-primary:hover {
+    background: #005a87;
+}
+
+.agents-management-actions .note {
+    margin: 10px 0 0 0;
+    color: #666;
+    font-size: 12px;
+}
+</style>

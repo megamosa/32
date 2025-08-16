@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="magoarab_whatsapp_agents" resource="default" engine="innodb" comment="WhatsApp Agents Table">
+        <column xsi:type="int" name="agent_id" unsigned="true" nullable="false" identity="true" comment="Agent ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Agent Name"/>
+        <column xsi:type="varchar" name="phone" nullable="false" length="20" comment="Phone Number"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Agent Title/Position"/>
+        <column xsi:type="text" name="avatar_url" nullable="true" comment="Avatar Image URL"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="20" default="online" comment="Agent Status"/>
+        <column xsi:type="text" name="working_hours" nullable="true" comment="Working Hours JSON"/>
+        <column xsi:type="text" name="working_days" nullable="true" comment="Working Days JSON"/>
+        <column xsi:type="varchar" name="timezone" nullable="true" length="50" comment="Agent Timezone"/>
+        <column xsi:type="text" name="welcome_message" nullable="true" comment="Custom Welcome Message"/>
+        <column xsi:type="smallint" name="sort_order" unsigned="true" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="boolean" name="is_active" nullable="false" default="true" comment="Is Active"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="agent_id"/>
+        </constraint>
+        <index referenceId="MAGOARAB_WHATSAPP_AGENTS_NAME" indexType="btree">
+            <column name="name"/>
+        </index>
+        <index referenceId="MAGOARAB_WHATSAPP_AGENTS_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="MAGOARAB_WHATSAPP_AGENTS_IS_ACTIVE" indexType="btree">
+            <column name="is_active"/>
+        </index>
+    </table>
+</schema>

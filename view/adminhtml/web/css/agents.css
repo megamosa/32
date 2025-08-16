@@ -1,0 +1,512 @@
+/* Agents Management Page Styles */
+
+.magoarab-whatsapp-agents {
+    margin: 20px 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.page-actions {
+    padding: 20px;
+    border-bottom: 1px solid #e3e3e3;
+    background: #f8f9fa;
+}
+
+.page-actions .action-primary {
+    background: #007bdb;
+    border-color: #007bdb;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-actions .action-primary:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+}
+
+.admin__data-grid-wrap {
+    padding: 20px;
+}
+
+.data-grid {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.data-grid th,
+.data-grid td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.data-grid th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+}
+
+.data-grid tbody tr:hover {
+    background: #f8f9ff;
+}
+
+.agent-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.agent-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e3e3e3;
+}
+
+.default-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid #e3e3e3;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-online {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.status-offline {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.status-busy {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.action-secondary {
+    background: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.action-secondary:hover {
+    background: #5a6268;
+    border-color: #5a6268;
+}
+
+.delete-agent {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+.delete-agent:hover {
+    background: #c82333;
+    border-color: #c82333;
+}
+
+.empty-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 60px 20px;
+    background: #f8f9fa;
+}
+
+.empty-message::before {
+    content: '👥';
+    font-size: 48px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Modal Styles - Updated for better size */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    overflow-y: auto; /* إضافة scroll للنافذة */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto; /* تقليل المارجن من 3% إلى 2% */
+    padding: 0;
+    border: none;
+    width: 85%; /* تقليل العرض من 90% إلى 85% */
+    max-width: 600px; /* تقليل العرض الأقصى من 700px إلى 600px */
+    max-height: 90vh; /* إضافة حد أقصى للارتفاع */
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+    overflow: hidden; /* منع overflow */
+}
+
+.modal-body {
+    padding: 20px; /* تقليل padding من 25px إلى 20px */
+    max-height: 60vh; /* إضافة حد أقصى لارتفاع المحتوى */
+    overflow-y: auto; /* إضافة scroll للمحتوى */
+}
+
+.modal-header {
+    padding: 15px 20px; /* تقليل padding */
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+    flex-shrink: 0; /* منع تقليص الهيدر */
+}
+
+.modal-footer {
+    padding: 15px 20px; /* تقليل padding */
+    border-top: 1px solid #e3e3e3;
+    text-align: right;
+    background: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+    flex-shrink: 0; /* منع تقليص الفوتر */
+}
+
+/* تحسين الحقول داخل النافذة */
+.admin__field {
+    margin-bottom: 15px; /* تقليل المسافة من 20px إلى 15px */
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* تقليل المسافة من 15px إلى 10px */
+    margin-bottom: 15px; /* تقليل المسافة من 20px إلى 15px */
+    padding: 12px; /* تقليل padding من 15px إلى 12px */
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.days-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* تقليل العرض الأدنى */
+    gap: 8px; /* تقليل المسافة من 12px إلى 8px */
+    padding: 12px; /* تقليل padding من 15px إلى 12px */
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.day-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* تقليل المسافة من 8px إلى 6px */
+    font-size: 13px; /* تقليل حجم الخط من 14px إلى 13px */
+    color: #333;
+    cursor: pointer;
+    padding: 6px; /* تقليل padding من 8px إلى 6px */
+    border-radius: 4px;
+}
+
+/* إضافة responsive design للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 1% auto;
+        max-height: 95vh;
+    }
+    
+    .modal-body {
+        max-height: 70vh;
+    }
+    
+    .days-checkboxes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+.close {
+    color: #6c757d;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close:hover {
+    color: #333;
+    background: #e9ecef;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-footer {
+    padding: 20px 25px;
+    border-top: 1px solid #e3e3e3;
+    text-align: right;
+    background: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+}
+
+.modal-footer .action-secondary {
+    margin-right: 10px;
+}
+
+.modal-footer .action-primary {
+    background: #007bdb;
+    border-color: #007bdb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.modal-footer .action-primary:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Form Styles */
+.admin__field {
+    margin-bottom: 20px;
+}
+
+.admin__field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.admin__control-text,
+.admin__control-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.admin__control-text:focus,
+.admin__control-select:focus {
+    border-color: #007bdb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 219, 0.1);
+}
+
+/* Avatar upload styles */
+.avatar-upload-section {
+    margin-bottom: 10px;
+}
+
+.avatar-preview {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.avatar-url-section {
+    border-top: 1px solid #e3e3e3;
+    padding-top: 10px;
+}
+
+/* Working hours styles */
+.always-available-section {
+    padding: 10px;
+    background: #e8f5e8;
+    border-radius: 4px;
+    border: 1px solid #c3e6c3;
+    margin-bottom: 15px;
+}
+
+.always-available-section label {
+    font-weight: 600;
+    color: #2d5a2d;
+}
+
+.day-checkbox {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.day-checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.working-hours {
+    transition: all 0.3s ease;
+}
+
+.days-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Upload button styling */
+#upload-avatar-btn {
+    background: #007cba;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#upload-avatar-btn:hover {
+    background: #005a87;
+}
+
+#remove-avatar-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#remove-avatar-btn:hover {
+    background: #c82333;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.time-inputs span {
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.time-inputs input[type="time"] {
+    width: 120px;
+}
+
+.days-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.day-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.day-checkbox:hover {
+    background: #e9ecef;
+}
+
+.day-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #007bdb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 15px;
+    }
+    
+    .time-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .time-inputs input[type="time"] {
+        width: 100%;
+    }
+    
+    .days-checkboxes {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .data-grid {
+        font-size: 12px;
+    }
+    
+    .data-grid th,
+    .data-grid td {
+        padding: 8px;
+    }
+}

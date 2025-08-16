@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagoArab WhatsApp Icon Extension
+ * Admin Menu Configuration
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MagoArab_WhatsappIcon::whatsapp_icon" 
+             title="WhatsApp Icon" 
+             module="MagoArab_WhatsappIcon" 
+             sortOrder="100" 
+             parent="Magento_Backend::content" 
+             resource="MagoArab_WhatsappIcon::config"/>
+        
+        <add id="MagoArab_WhatsappIcon::agents" 
+             title="Manage Agents" 
+             module="MagoArab_WhatsappIcon" 
+             sortOrder="10" 
+             parent="MagoArab_WhatsappIcon::whatsapp_icon" 
+             action="magoarab_whatsapp/agents/index" 
+             resource="MagoArab_WhatsappIcon::config"/>
+        
+        <add id="MagoArab_WhatsappIcon::settings" 
+             title="Settings" 
+             module="MagoArab_WhatsappIcon" 
+             sortOrder="20" 
+             parent="MagoArab_WhatsappIcon::whatsapp_icon" 
+             action="admin/system_config/edit/section/magoarab_whatsapp" 
+             resource="MagoArab_WhatsappIcon::config"/>
+    </menu>
+</config>

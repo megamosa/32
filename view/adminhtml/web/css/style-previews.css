@@ -1,0 +1,247 @@
+/* WhatsApp Icon Style Previews */
+
+.style-preview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+}
+
+.style-preview-item {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.style-preview-item:hover {
+    border-color: #25D366;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.2);
+}
+
+.style-preview-item.selected {
+    border-color: #25D366;
+    background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+}
+
+.style-preview-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #25D366, #128C7E, #075E54);
+    background-size: 200% 100%;
+    animation: gradient-flow 3s ease infinite;
+}
+
+/* Style 1: Modern Floating Chat Widget */
+.style-preview-item[data-style="style_1"]::after {
+    content: '💬';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 2: Simple Floating Button */
+.style-preview-item[data-style="style_2"]::after {
+    content: '🔘';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 3: Chat Bubble with Text */
+.style-preview-item[data-style="style_3"]::after {
+    content: '💭';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 4: Modern Chat Box */
+.style-preview-item[data-style="style_4"]::after {
+    content: '📱';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 5: Floating Action Button */
+.style-preview-item[data-style="style_5"]::after {
+    content: '➕';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 6: Pill Shape Button */
+.style-preview-item[data-style="style_6"]::after {
+    content: '💊';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 7: Notification Badge */
+.style-preview-item[data-style="style_7"]::after {
+    content: '🔔';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 8: Help Text Style */
+.style-preview-item[data-style="style_8"]::after {
+    content: '❓';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 9: Gradient Button */
+.style-preview-item[data-style="style_9"]::after {
+    content: '🌈';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Style 10: Shadow Effect */
+.style-preview-item[data-style="style_10"]::after {
+    content: '👻';
+    font-size: 40px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(37, 211, 102, 0.3));
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.preview-label {
+    font-weight: 700;
+    margin-top: 12px;
+    font-size: 15px;
+    color: #2d3748;
+    line-height: 1.3;
+}
+
+.preview-description {
+    font-size: 13px;
+    color: #718096;
+    margin-top: 6px;
+    line-height: 1.4;
+    max-width: 200px;
+}
+
+/* Animations */
+@keyframes gradient-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .style-preview-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .style-preview-item {
+        padding: 20px;
+        min-height: 120px;
+    }
+    
+    .style-preview-item::after {
+        font-size: 28px;
+    }
+    
+    .preview-label {
+        font-size: 13px;
+    }
+    
+    .preview-description {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .style-preview-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .style-preview-item {
+        padding: 16px;
+        min-height: 100px;
+    }
+    
+    .style-preview-item::after {
+        font-size: 24px;
+    }
+    
+    .preview-label {
+        font-size: 12px;
+    }
+    
+    .preview-description {
+        font-size: 10px;
+    }
+}

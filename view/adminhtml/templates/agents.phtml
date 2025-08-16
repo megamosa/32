@@ -1,0 +1,573 @@
+<?php
+/**
+ * MagoArab WhatsApp Icon Extension
+ * Admin Agents Template
+ * 
+ * @var \MagoArab\WhatsappIcon\Block\Adminhtml\Agents $block
+ */
+
+$agents = $block->getAgents();
+?>
+
+<style>
+/* Agent Management Styles */
+.magoarab-whatsapp-agents {
+    margin: 20px 0;
+}
+
+.agent-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.default-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-online {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-offline {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-busy {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 4px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #e3e3e3;
+    text-align: right;
+}
+
+.working-hours {
+    margin-top: 10px;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.days-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.day-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.empty-message {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px;
+}
+
+.avatar-preview img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-upload-section {
+    margin-bottom: 10px;
+}
+
+.avatar-url-section {
+    margin-top: 10px;
+}
+</style>
+
+<div class="magoarab-whatsapp-agents">
+    <div class="page-actions">
+        <button type="button" class="action-primary" id="add-agent-btn">
+            <span><?= $escaper->escapeHtml(__('Add New Agent')) ?></span>
+        </button>
+    </div>
+
+    <div class="admin__data-grid-wrap">
+        <table class="data-grid" id="agents-table">
+            <thead>
+                <tr>
+                    <th class="data-grid-th"><?= $escaper->escapeHtml(__('Avatar')) ?></th>
+                    <th class="data-grid-th"><?= $escaper->escapeHtml(__('Name')) ?></th>
+                    <th class="data-grid-th"><?= $escaper->escapeHtml(__('Phone')) ?></th>
+                    <th class="data-grid-th"><?= $escaper->escapeHtml(__('Title')) ?></th>
+                    <th class="data-grid-th"><?= $escaper->escapeHtml(__('Status')) ?></th>
+                    <th class="data-grid-th"><?= $escaper->escapeHtml(__('Actions')) ?></th>
+                </tr>
+            </thead>
+            <tbody id="agents-tbody">
+                <?php if (!empty($agents)): ?>
+                    <?php foreach ($agents as $index => $agent): ?>
+                        <tr class="agent-row" data-index="<?= $escaper->escapeHtmlAttr($index) ?>">
+                            <td>
+                                <div class="agent-avatar">
+                                    <?php if (!empty($agent['avatar_url'])): ?>
+                                        <img src="<?= $escaper->escapeUrl($agent['avatar_url']) ?>" alt="<?= $escaper->escapeHtmlAttr($agent['name']) ?>" width="40" height="40">
+                                    <?php else: ?>
+                                        <div class="default-avatar"><?= $escaper->escapeHtml(substr($agent['name'], 0, 1)) ?></div>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                            <td><?= $escaper->escapeHtml($agent['name']) ?></td>
+                            <td><?= $escaper->escapeHtml($agent['phone']) ?></td>
+                            <td><?= $escaper->escapeHtml($agent['title'] ?? '') ?></td>
+                            <td>
+                                <span class="status-badge status-<?= $escaper->escapeHtmlAttr($agent['status'] ?? 'online') ?>">
+                                    <?= $escaper->escapeHtml(ucfirst($agent['status'] ?? 'online')) ?>
+                                </span>
+                            </td>
+                            <td>
+                                <button type="button" class="action-secondary edit-agent" data-index="<?= $escaper->escapeHtmlAttr($index) ?>">
+                                    <?= $escaper->escapeHtml(__('Edit')) ?>
+                                </button>
+                                <button type="button" class="action-secondary delete-agent" data-index="<?= $escaper->escapeHtmlAttr($index) ?>">
+                                    <?= $escaper->escapeHtml(__('Delete')) ?>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="empty-message">
+                            <?= $escaper->escapeHtml(__('No agents found. Click "Add New Agent" to create one.')) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Agent Modal -->
+<div id="agent-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title"><?= $escaper->escapeHtml(__('Add New Agent')) ?></h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="agent-form">
+                <input type="hidden" id="agent-index" value="">
+                
+                <div class="admin__field">
+                    <label class="admin__field-label" for="agent-name">
+                        <span><?= $escaper->escapeHtml(__('Agent Name')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" id="agent-name" name="name" class="admin__control-text" required>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label" for="agent-phone">
+                        <span><?= $escaper->escapeHtml(__('Phone Number')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" id="agent-phone" name="phone" class="admin__control-text" placeholder="+1234567890" required>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label" for="agent-title">
+                        <span><?= $escaper->escapeHtml(__('Title')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <input type="text" id="agent-title" name="title" class="admin__control-text" placeholder="<?= $escaper->escapeHtmlAttr(__('e.g., Customer Support')) ?>">
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label" for="agent-avatar">
+                        <span><?= $escaper->escapeHtml(__('Avatar')) ?></span>
+                    </label>
+                    <div class="admin__control-addon">
+                        <div class="avatar-upload-section">
+                            <input type="file" id="agent-avatar-file" accept="image/*" style="display: none;">
+                            <button type="button" class="action-secondary" id="upload-avatar-btn">
+                                <span><?= $escaper->escapeHtml(__('Upload Image')) ?></span>
+                            </button>
+                            <div class="avatar-preview" id="avatar-preview" style="display: none;">
+                                <img id="avatar-preview-img" src="" alt="Avatar Preview" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin: 10px 0;">
+                                <button type="button" class="action-secondary" id="remove-avatar-btn" style="margin-left: 10px;">
+                                    <span><?= $escaper->escapeHtml(__('Remove')) ?></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="avatar-url-section">
+                            <span style="font-size: 12px; color: #666;"><?= $escaper->escapeHtml(__('Or enter image URL:')) ?></span>
+                            <input type="text" class="admin__control-text" id="agent-avatar" placeholder="<?= $escaper->escapeHtmlAttr(__('Enter avatar URL')) ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label" for="agent-status">
+                        <span><?= $escaper->escapeHtml(__('Status')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select id="agent-status" name="status" class="admin__control-select">
+                            <option value="online"><?= $escaper->escapeHtml(__('Online')) ?></option>
+                            <option value="offline"><?= $escaper->escapeHtml(__('Offline')) ?></option>
+                            <option value="busy"><?= $escaper->escapeHtml(__('Busy')) ?></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin__field">
+                    <label class="admin__field-label">
+                        <span><?= $escaper->escapeHtml(__('Working Hours')) ?></span>
+                    </label>
+                    <div class="admin__control-addon">
+                        <div class="always-available-section" style="margin-bottom: 15px;">
+                            <label class="day-checkbox">
+                                <input type="checkbox" id="always-available" name="always_available" value="1">
+                                <span><?= $escaper->escapeHtml(__('Always Available (24/7)')) ?></span>
+                            </label>
+                        </div>
+                        
+                        <div class="working-hours" id="working-hours-section">
+                            <div class="time-inputs">
+                                <span><?= $escaper->escapeHtml(__('From:')) ?></span>
+                                <input type="time" class="admin__control-text" id="agent-start-time" name="working_hours[start]" value="09:00">
+                                <span><?= $escaper->escapeHtml(__('To:')) ?></span>
+                                <input type="time" class="admin__control-text" id="agent-end-time" name="working_hours[end]" value="18:00">
+                            </div>
+                            
+                            <div class="days-checkboxes">
+                                <?php 
+                                $days = [
+                                    'monday' => __('Monday'),
+                                    'tuesday' => __('Tuesday'), 
+                                    'wednesday' => __('Wednesday'),
+                                    'thursday' => __('Thursday'),
+                                    'friday' => __('Friday'),
+                                    'saturday' => __('Saturday'),
+                                    'sunday' => __('Sunday')
+                                ];
+                                ?>
+                                <?php foreach ($days as $value => $label): ?>
+                                    <label class="day-checkbox">
+                                        <input type="checkbox" name="working_hours[days][]" value="<?= $escaper->escapeHtmlAttr($value) ?>">
+                                        <?= $escaper->escapeHtml($label) ?>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="action-secondary" id="cancel-agent"><?= $escaper->escapeHtml(__('Cancel')) ?></button>
+            <button type="button" class="action-primary" id="save-agent"><?= $escaper->escapeHtml(__('Save Agent')) ?></button>
+        </div>
+    </div>
+</div>
+
+<script>
+require(['jquery'], function($) {
+    'use strict';
+    
+    var agents = <?= json_encode($agents) ?>;
+    var modal = $('#agent-modal');
+    var form = $('#agent-form');
+    
+    // Add agent button
+    $('#add-agent-btn').on('click', function() {
+        $('#modal-title').text('Add New Agent');
+        $('#agent-index').val('');
+        form[0].reset();
+        $('#avatar-preview').hide();
+        $('#always-available').prop('checked', false);
+        $('#working-hours-section').show();
+        modal.show();
+    });
+    
+    // Edit agent button
+    $(document).on('click', '.edit-agent', function() {
+        var index = $(this).data('index');
+        var agent = agents[index];
+        
+        $('#modal-title').text('Edit Agent');
+        $('#agent-index').val(index);
+        $('#agent-name').val(agent.name);
+        $('#agent-phone').val(agent.phone);
+        $('#agent-title').val(agent.title || '');
+        $('#agent-avatar').val(agent.avatar_url || '');
+        $('#agent-status').val(agent.status || 'online');
+        
+        // Handle avatar preview
+        if (agent.avatar_url && (agent.avatar_url.startsWith('data:image') || agent.avatar_url.startsWith('http'))) {
+            $('#avatar-preview-img').attr('src', agent.avatar_url);
+            $('#avatar-preview').show();
+        } else {
+            $('#avatar-preview').hide();
+        }
+        
+        // Handle always available option
+        var isAlwaysAvailable = agent.working_hours === '00:00-23:59' && 
+                               agent.working_days === 'monday,tuesday,wednesday,thursday,friday,saturday,sunday';
+        
+        if (isAlwaysAvailable) {
+            $('#always-available').prop('checked', true);
+            $('#working-hours-section').hide();
+        } else {
+            $('#always-available').prop('checked', false);
+            $('#working-hours-section').show();
+            
+            // Parse working hours
+            if (agent.working_hours && agent.working_hours.includes('-')) {
+                var hours = agent.working_hours.split('-');
+                $('#agent-start-time').val(hours[0] || '09:00');
+                $('#agent-end-time').val(hours[1] || '18:00');
+            }
+            
+            // Reset and set working days
+            $('input[name="working_hours[days][]"]').prop('checked', false);
+            if (agent.working_days) {
+                var days = agent.working_days.split(',');
+                days.forEach(function(day) {
+                    $('input[name="working_hours[days][]"][value="' + day.trim() + '"]').prop('checked', true);
+                });
+            }
+        }
+        
+        modal.show();
+    });
+    
+    // Delete agent button
+    $(document).on('click', '.delete-agent', function() {
+        var index = $(this).data('index');
+        if (confirm('Are you sure you want to delete this agent?')) {
+            agents.splice(index, 1);
+            saveAgents();
+        }
+    });
+    
+    // Avatar upload functionality
+    $('#upload-avatar-btn').on('click', function() {
+        $('#agent-avatar-file').click();
+    });
+
+    $('#agent-avatar-file').on('change', function(e) {
+        var file = e.target.files[0];
+        if (file) {
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('File size must be less than 2MB');
+                return;
+            }
+            
+            // Validate file type
+            if (!file.type.match('image.*')) {
+                alert('Please select an image file');
+                return;
+            }
+            
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#avatar-preview-img').attr('src', e.target.result);
+                $('#avatar-preview').show();
+                $('#agent-avatar').val(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    $('#remove-avatar-btn').on('click', function() {
+        $('#avatar-preview').hide();
+        $('#agent-avatar').val('');
+        $('#agent-avatar-file').val('');
+    });
+    
+    // Always available checkbox functionality
+    $('#always-available').on('change', function() {
+        if ($(this).is(':checked')) {
+            $('#working-hours-section').hide();
+        } else {
+            $('#working-hours-section').show();
+            $('#agent-start-time').val('09:00');
+            $('#agent-end-time').val('18:00');
+        }
+    });
+    
+    // Save agent
+    $('#save-agent').on('click', function() {
+        var formData = {};
+        
+        // Get basic fields
+        formData.name = $('#agent-name').val().trim();
+        formData.phone = $('#agent-phone').val().trim();
+        formData.title = $('#agent-title').val().trim() || '';
+        formData.avatar_url = $('#agent-avatar').val().trim() || '';
+        formData.status = $('#agent-status').val() || 'online';
+        formData.is_active = true;
+        formData.sort_order = 0;
+        formData.welcome_message = '';
+        formData.timezone = 'UTC';
+        
+        // Validate required fields
+        if (!formData.name) {
+            alert('Agent name is required');
+            return;
+        }
+        
+        if (!formData.phone) {
+            alert('Phone number is required');
+            return;
+        }
+        
+        // Handle always available vs specific working hours
+        if ($('#always-available').is(':checked')) {
+            formData.working_hours = '00:00-23:59';
+            formData.working_days = 'monday,tuesday,wednesday,thursday,friday,saturday,sunday';
+        } else {
+            var startTime = $('#agent-start-time').val() || '09:00';
+            var endTime = $('#agent-end-time').val() || '18:00';
+            formData.working_hours = startTime + '-' + endTime;
+            
+            var selectedDays = [];
+            $('input[name="working_hours[days][]"]:checked').each(function() {
+                selectedDays.push($(this).val());
+            });
+            formData.working_days = selectedDays.length > 0 ? selectedDays.join(',') : 'monday,tuesday,wednesday,thursday,friday';
+        }
+        
+        var index = $('#agent-index').val();
+        if (index === '') {
+            agents.push(formData);
+        } else {
+            agents[index] = formData;
+        }
+        
+        saveAgents();
+        modal.hide();
+    });
+    
+    // Cancel button
+    $('#cancel-agent, .close').on('click', function() {
+        modal.hide();
+    });
+    
+    // Close modal when clicking outside
+    $(window).on('click', function(event) {
+        if (event.target === modal[0]) {
+            modal.hide();
+        }
+    });
+    
+    function saveAgents() {
+        $.ajax({
+            url: '<?= $escaper->escapeJs($block->getSaveUrl()) ?>',
+            type: 'POST',
+            data: {
+                agents: JSON.stringify(agents),
+                form_key: window.FORM_KEY
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert('Error saving agents: ' + (response.message || 'Unknown error'));
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', xhr.responseText);
+                var errorMessage = 'Error saving agents. Please try again.';
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.message) {
+                        errorMessage = response.message;
+                    }
+                } catch (e) {
+                    // Use default error message
+                }
+                alert(errorMessage);
+            }
+        });
+    }
+});
+</script>

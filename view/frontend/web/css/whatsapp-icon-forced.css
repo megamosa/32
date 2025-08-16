@@ -1,0 +1,156 @@
+/* Forced WhatsApp Icon Visibility */
+#magoarab-whatsapp-icon {
+    position: fixed !important;
+    z-index: 999999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    clip: auto !important;
+    clip-path: none !important;
+    overflow: visible !important;
+    transform: none !important;
+    filter: none !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    min-width: auto !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    text-align: inherit !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    white-space: normal !important;
+    vertical-align: baseline !important;
+    direction: ltr !important;
+    unicode-bidi: normal !important;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    text-rendering: auto !important;
+    -webkit-font-smoothing: auto !important;
+    -moz-osx-font-smoothing: auto !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    transition: none !important;
+    animation: none !important;
+    /* Force positioning */
+    bottom: 24px !important;
+    right: 24px !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Force WhatsApp icon to be visible */
+.magoarab-whatsapp-icon {
+    position: fixed !important;
+    z-index: 999999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    left: auto !important;
+    top: auto !important;
+    /* Force size */
+    width: 70px !important;
+    height: 70px !important;
+    min-width: 70px !important;
+    min-height: 70px !important;
+    /* Force background */
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4) !important;
+}
+
+/* Force WhatsApp SVG to be visible */
+.magoarab-whatsapp-icon .whatsapp-svg {
+    width: 36px !important;
+    height: 36px !important;
+    fill: white !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Position classes */
+#magoarab-whatsapp-icon.bottom-right {
+    bottom: 20px !important;
+    right: 20px !important;
+    top: auto !important;
+    left: auto !important;
+}
+
+#magoarab-whatsapp-icon.bottom-left {
+    bottom: 20px !important;
+    left: 20px !important;
+    top: auto !important;
+    right: auto !important;
+}
+
+#magoarab-whatsapp-icon.top-right {
+    top: 20px !important;
+    right: 20px !important;
+    bottom: auto !important;
+    left: auto !important;
+}
+
+#magoarab-whatsapp-icon.top-left {
+    top: 20px !important;
+    left: 20px !important;
+    bottom: auto !important;
+    right: auto !important;
+}
+
+/* Size classes */
+#magoarab-whatsapp-icon.small {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+#magoarab-whatsapp-icon.medium {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+#magoarab-whatsapp-icon.large {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+/* Ensure WhatsApp icon is always visible */
+body:has(#magoarab-whatsapp-icon) {
+    position: relative !important;
+}
+
+/* Override any theme CSS that might hide the icon */
+.magoarab-whatsapp-icon,
+#magoarab-whatsapp-icon,
+[data-block="magoarab.whatsapp.icon"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    z-index: 999999 !important;
+}

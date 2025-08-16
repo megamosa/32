@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagoArab WhatsApp Icon Extension
+ * Dependency Injection Configuration
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" type="MagoArab\WhatsappIcon\Model\AgentRepository" />
+    <preference for="MagoArab\WhatsappIcon\Api\Data\AgentInterface" type="MagoArab\WhatsappIcon\Model\Agent" />
+</config>

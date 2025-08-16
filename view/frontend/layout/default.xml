@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MagoArab WhatsApp Icon Extension
+ * Default Layout
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MagoArab_WhatsappIcon::css/whatsapp-icon.css"/>
+        <css src="MagoArab_WhatsappIcon::css/whatsapp-icon-forced.css"/>
+        <script src="MagoArab_WhatsappIcon::js/whatsapp-icon.js"/>
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="MagoArab\WhatsappIcon\Block\WhatsappIcon" 
+                   name="magoarab.whatsapp.icon" 
+                   template="MagoArab_WhatsappIcon::whatsapp_icon.phtml" 
+                   cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

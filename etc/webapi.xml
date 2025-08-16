@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <!-- GET: List all agents -->
+    <route url="/V1/whatsapp/agents" method="GET">
+        <service class="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="MagoArab_WhatsappIcon::config"/>
+        </resources>
+    </route>
+    
+    <!-- GET: Get agent by ID -->
+    <route url="/V1/whatsapp/agents/:agentId" method="GET">
+        <service class="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="MagoArab_WhatsappIcon::config"/>
+        </resources>
+    </route>
+    
+    <!-- POST: Create new agent -->
+    <route url="/V1/whatsapp/agents" method="POST">
+        <service class="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="MagoArab_WhatsappIcon::config"/>
+        </resources>
+    </route>
+    
+    <!-- PUT: Update existing agent -->
+    <route url="/V1/whatsapp/agents/:agentId" method="PUT">
+        <service class="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="MagoArab_WhatsappIcon::config"/>
+        </resources>
+    </route>
+    
+    <!-- DELETE: Delete agent by ID -->
+    <route url="/V1/whatsapp/agents/:agentId" method="DELETE">
+        <service class="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="MagoArab_WhatsappIcon::config"/>
+        </resources>
+    </route>
+    
+    <!-- POST: Bulk operations -->
+    <route url="/V1/whatsapp/agents/bulk" method="POST">
+        <service class="MagoArab\WhatsappIcon\Api\AgentRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="MagoArab_WhatsappIcon::config"/>
+        </resources>
+    </route>
+    
+</routes>

@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magoarab" translate="label" sortOrder="200">
+            <label>MagoArab Extensions</label>
+        </tab>
+        
+        <section id="magoarab_whatsapp" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>WhatsApp Icon</label>
+            <tab>magoarab</tab>
+            <resource>MagoArab_WhatsappIcon::config</resource>
+            
+            <!-- General Settings -->
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable WhatsApp Icon</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable the WhatsApp icon on your website.</comment>
+                </field>
+                
+                <field id="phone_number" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Phone Number</label>
+                    <comment>Enter your WhatsApp phone number with country code (e.g., +1234567890).</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="default_message" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Message</label>
+                    <comment>Default message to send when customers click the WhatsApp icon.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            
+            <!-- Appearance Settings -->
+            <group id="appearance" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Appearance Settings</label>
+                
+                <field id="icon_style" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Style</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\IconStyle</source_model>
+                    <comment>Choose the style of the WhatsApp icon.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="style_preview" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Style Preview</label>
+                    <frontend_model>MagoArab\WhatsappIcon\Block\Adminhtml\System\Config\StylePreview</frontend_model>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="icon_position" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Position</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\IconPosition</source_model>
+                    <comment>Choose where to display the WhatsApp icon on your website.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="icon_size" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Size</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\IconSize</source_model>
+                    <comment>Choose the size of the WhatsApp icon.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="animation_effect" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Animation Effect</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\AnimationEffect</source_model>
+                    <comment>Choose animation effect for the WhatsApp icon.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            
+            <!-- Multi-Agent Settings -->
+            <group id="multi_agent" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Multi-Agent Settings</label>
+                
+                <field id="multi_agent_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Multi-Agent Support</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable support for multiple WhatsApp agents.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="agents_management" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Agents Management</label>
+                    <frontend_model>MagoArab\WhatsappIcon\Block\Adminhtml\System\Config\AgentsManagement</frontend_model>
+                    <depends>
+                        <field id="multi_agent_enabled">1</field>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            
+            <!-- Display Settings -->
+            <group id="display" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Settings</label>
+                
+                <field id="show_on_pages" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show on Pages</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\ShowOnPages</source_model>
+                    <comment>Select on which pages to display the WhatsApp icon.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="specific_cms_pages" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Specific CMS Pages</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\CmsPages</source_model>
+                    <comment>Select specific CMS pages to show the icon (only if "CMS Pages" is selected above).</comment>
+                    <depends>
+                        <field id="show_on_pages">specific_cms</field>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            
+            <!-- Advanced Settings -->
+            <group id="advanced" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Advanced Settings</label>
+                
+                <field id="enable_scheduling" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Scheduling</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable time-based scheduling for the WhatsApp icon.</comment>
+                    <depends>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="working_hours_start" translate="label comment" type="time" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Working Hours Start</label>
+                    <comment>Start time for working hours (24-hour format).</comment>
+                    <depends>
+                        <field id="enable_scheduling">1</field>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="working_hours_end" translate="label comment" type="time" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Working Hours End</label>
+                    <comment>End time for working hours (24-hour format).</comment>
+                    <depends>
+                        <field id="enable_scheduling">1</field>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+                
+                <field id="working_days" translate="label comment" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Working Days</label>
+                    <source_model>MagoArab\WhatsappIcon\Model\Config\Source\WorkingDays</source_model>
+                    <comment>Select working days when the icon should be displayed.</comment>
+                    <depends>
+                        <field id="enable_scheduling">1</field>
+                        <field id="magoarab_whatsapp/general/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
